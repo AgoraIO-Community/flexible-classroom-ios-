@@ -39,7 +39,6 @@ def insert1():
                         environment_code,
                         file_path)
     
-
 def insert2():
     tag_code = "proctor.launch"
 
