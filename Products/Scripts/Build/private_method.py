@@ -1,3 +1,4 @@
+import subprocess
 
 def insertPrivateMethod(findTag: str, 
                         content: str, 
@@ -51,5 +52,15 @@ def insert2():
                         environment_code,
                         file_path)
     
+def printFile():
+        file_path = "../../../App/AgoraEducation/UI/Root/FcrAppUICoreViewController.swift"
+        
+        result = subprocess.run(['cat', file_path],
+                                capture_output=True,
+                                text=True)
+        
+        print(result.stdout)
+
 insert1()
 insert2()
+printFile()
