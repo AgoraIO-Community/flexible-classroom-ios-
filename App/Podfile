@@ -21,7 +21,7 @@ target 'AgoraEducation' do
   pod 'AgoraMediaPlayer_iOS',        '1.3.0'
   pod 'Agora_Chat_iOS',              '1.0.6'
   pod 'AgoraRtm_iOS',                '1.5.1'
-  pod 'Whiteboard',                  '2.16.90'
+  pod 'Whiteboard', 		     :git=> 'https://github.com/netless-io/whiteboard-iOS.git', :branch=>'effect-mixing'
  
   # open source libs
   pod 'AgoraClassroomSDK_iOS', '2.8.101'
