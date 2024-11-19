@@ -20,7 +20,7 @@ AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/release_1.0.1/dev/Agor
 
 AgoraWidgets_URL="${Artifactory_iOS_URL}/AgoraWidgets/release_2.8.103/dev/AgoraWidgets_2.8.103.zip"
 
-AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.103/dev/AgoraEduCore_2.8.103.zip"
+AgoraEduCore_URL="${Artifactory_iOS_URL}/AgoraEduCore/release_2.8.104/dev/AgoraEduCore_2.8.104.zip"
 AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/Flex/dev/AgoraWidget_2.8.0.zip"
 AgoraUIBaseViews_URL="${Artifactory_iOS_URL}/AgoraUIBaseViews/release_2.8.101/dev/AgoraUIBaseViews_2.8.101.zip"
 

@@ -38,19 +38,26 @@ SourcePodContent = """
   pod 'AgoraRx/Source',                 :path => '../../apaas-common-libs-ios/AgoraRx_Local.podspec'
 
   pod 'MLeaksFinder'
-  
-  post_install do |installer|
-    ## Fix for XCode 12.5
-    find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
-                     "layoutCache[currentClass] = ivars;", "layoutCache[(id<NSCopying>)currentClass] = ivars;")
-    
-    # no signing for pods bundle
-    installer.pods_project.targets.each do |target|
+end
+
+# post install
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+        
+      # no signing for pods bundle, after xcode 14
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-        target.build_configurations.each do |config|
-          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        end
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
+        
+      # reset libs version
+      deployment = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+
+      if deployment.to_f < 11.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
+
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
     end
   end
 end
@@ -69,22 +76,30 @@ BinaryPodContent = """
   pod 'AgoraEduCore/Binary',          :path => '../AgoraEduCore_Local.podspec'
   pod 'AgoraUIBaseViews/Binary',      :path => '../AgoraUIBaseViews_Local.podspec'
   pod 'AgoraWidget/Binary',           :path => '../AgoraWidget_Local.podspec'
-  
-  # post install, no signing for pods bundle
-  post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-      config.build_settings['inhibit_all_warnings'] = 'YES'
-    end
-  
-    installer.pods_project.targets.each do |target|
+end
+
+# post install
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+        
+      # no signing for pods bundle, after xcode 14
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-        target.build_configurations.each do |config|
-          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        end
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
+        
+      # reset libs version
+      deployment = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+
+      if deployment.to_f < 11.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
+
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
     end
   end
 end
+
 """
 
 PreRtcContent = """
