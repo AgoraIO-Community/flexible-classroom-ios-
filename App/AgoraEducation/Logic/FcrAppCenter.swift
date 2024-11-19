@@ -91,6 +91,8 @@ class FcrAppCenter: NSObject {
         armin.failureDelegate = self
         
         do {
+            localStorage.writeData(true,
+                                   key: .testMode)
             if let mode = try? localStorage.readStringEnumData(key: .uiMode,
                                                                type: FcrAppUIMode.self) {
                 self.uiMode = mode
