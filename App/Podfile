@@ -21,7 +21,8 @@ target 'AgoraEducation' do
   pod 'AgoraMediaPlayer_iOS',        '1.3.0'
   pod 'Agora_Chat_iOS',              '1.0.6'
   pod 'AgoraRtm_iOS',                '1.5.1'
-  pod 'Whiteboard',                  '2.16.51'
+  pod 'Whiteboard',                  '2.16.107'
+  pod 'YYModel',			     '1.0.4'
  
   # open source libs
   pod 'AgoraClassroomSDK_iOS', '2.8.101'
@@ -30,8 +31,7 @@ target 'AgoraEducation' do
   pod 'AgoraProctorSDK',       '1.0.1'
   pod 'AgoraProctorUI',        '1.0.0'
   
-  pod 'AgoraWidgets',          '2.8.101'
-  
+  pod 'AgoraWidgets', :path => '../../apaas-extapp-ios'
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.101'
   pod 'AgoraEduCore', 	       '2.8.101'
