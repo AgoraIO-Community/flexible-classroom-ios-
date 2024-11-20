@@ -102,7 +102,8 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                                       hasWatermark: hasWatermark)
 
         AgoraClassroomSDK.setDelegate(self)
-        
+        let sel = NSSelectorFromString("setEnvironment:")
+        AgoraClassroomSDK.perform(sel, with: center.urlGroup.environment.intValue)
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in
