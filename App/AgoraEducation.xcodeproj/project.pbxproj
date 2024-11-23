@@ -195,6 +195,10 @@
 		C4C459442E746BCF4D5997C8 /* Pods-AgoraEducation.certificateb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificateb.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificateb.xcconfig"; sourceTree = "<group>"; };
 		D07BBD028AA8C6FEF9294576 /* Pods-AgoraEducation.certificatea.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.certificatea.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.certificatea.xcconfig"; sourceTree = "<group>"; };
 		D58F6327530BE8AC6BB7A5A6 /* Pods-AgoraEducation.qatestnewrelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraEducation.qatestnewrelease.xcconfig"; path = "Target Support Files/Pods-AgoraEducation/Pods-AgoraEducation.qatestnewrelease.xcconfig"; sourceTree = "<group>"; };
+		E5D8B2442CF1F4DB0060F202 /* AgoraRx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRx.framework; path = ../../AgoraEduCore/AgoraEduCore/AgoraRx.framework; sourceTree = "<group>"; };
+		E5D8B2482CF1F4E90060F202 /* AgoraRte.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRte.framework; path = ../../AgoraEduCore/AgoraEduCore/AgoraRte.framework; sourceTree = "<group>"; };
+		E5D8B24B2CF1F4F80060F202 /* AgoraReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraReport.framework; path = ../../AgoraEduCore/AgoraEduCore/AgoraReport.framework; sourceTree = "<group>"; };
+		E5D8B24E2CF1F5060060F202 /* AgoraEduCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraEduCore.framework; path = ../../AgoraEduCore/AgoraEduCore/AgoraEduCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,6 +604,10 @@
 		E01323DE5BE7ACD24D968F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5D8B24E2CF1F5060060F202 /* AgoraEduCore.framework */,
+				E5D8B24B2CF1F4F80060F202 /* AgoraReport.framework */,
+				E5D8B2482CF1F4E90060F202 /* AgoraRte.framework */,
+				E5D8B2442CF1F4DB0060F202 /* AgoraRx.framework */,
 				787A004125D10FC10063456F /* AudioToolbox.framework */,
 				785D12F924CEB25700F7A8AB /* EduSDK.framework */,
 				785D12F224CEB24E00F7A8AB /* AgoraReplayUI.framework */,

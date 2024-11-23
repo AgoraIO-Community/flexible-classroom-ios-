@@ -131,9 +131,8 @@ private extension FcrAppUIQuickStartViewController {
         let roomName = roomId
         
         let appId = "f488493d1886435f963dfb3d95984fd4"
-        let token = "007eJxTYHgS0+IR9dq/w2+Gc2Urr/+lDO3z1w03ij+bH3r8+rJpXmkKDGkmFhYmlsYphhYWZibGpmmWZsYpaUnGKZamlhYmaSkm77ZbpjcEMjLc0bl6lpmBiYERCEF8NgYjMGBlYGBQYEg1Tk5NMrWwMEw0SDRMS0lMTDEwNLI0SzE3NTWxMLNIYYfr42SwtLS0sLAwNzeHGcHEAAAq0C2i"
+        let token = "007eJxTYEhcw7X76Mtnr5Iu98m83Np/Sm2/ir5Ljbib/dkav9fzKt0UGNJMLCxMLI1TDC0szEyMTdMszYxT0pKMUyxNLS1M0lJMak85pjcEMjJMuv7WkpmBiYERCEF8NgYjMGBlYGBQYEg1Tk5NMrWwMEw0SDRMS0lMTDEwNLI0SzE3NTWxMLNIYYfr42SwtLS0sLAwNzeHGcHEAABqFC23"
 
-        
         let region = AgoraEduRegion.CN
         let streamLatency = AgoraEduLatencyLevel.low
         
