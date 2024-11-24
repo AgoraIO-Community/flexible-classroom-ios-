@@ -8,6 +8,7 @@
 
 import AgoraUIBaseViews
 import AgoraClassroomSDK_iOS
+import AgoraWidgets
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
@@ -139,7 +140,10 @@ private extension FcrAppUIQuickStartViewController {
             
                     options.mediaOptions.latencyLevel = streamLatency
                     options.region = region
-            
+                
+                    // 大班分组
+                    let chat = AgoraWidgetConfig(with: AgoraChatEasemobWidgetGroup.self, widgetId: "easemobIM")
+                    options.widgets[chat.widgetId] = chat
                     self?.joinClassroom(config: options,
                                            hasWatermark: hasWatermark)
                     
