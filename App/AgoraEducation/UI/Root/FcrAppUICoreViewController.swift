@@ -104,6 +104,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
         AgoraClassroomSDK.setDelegate(self)
         let sel = NSSelectorFromString("setEnvironment:")
         AgoraClassroomSDK.perform(sel, with: center.urlGroup.environment.intValue)
+        let version = AgoraClassroomSDK.version()
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in

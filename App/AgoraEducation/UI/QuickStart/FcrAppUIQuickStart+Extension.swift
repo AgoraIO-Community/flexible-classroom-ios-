@@ -21,7 +21,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
                                            for: .touchUpInside)
         
         headerView.signButton.addTarget(self,
-                                        action: #selector(onSignInButtonPressed(_ :)),
+                                        action: #selector(onImGroupButtonPressed(_ :)),
                                         for: .touchUpInside)
         
         // Join room view
@@ -110,6 +110,46 @@ private extension FcrAppUIQuickStartViewController {
                               animated: true)
     }
     
+    @objc func onImGroupButtonPressed(_ sender: UIButton) {
+        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] (roomUuid, userUuid) in
+            self?.center.getConfigV3(role: AgoraEduUserRole.student.rawValue, roomUuid: roomUuid, userUuid: userUuid) { [weak self] appId, token in
+                    let userId = userUuid
+                    let userName = userId
+                    let userRole = AgoraEduUserRole.student
+            
+                    let roomType = AgoraEduRoomType.lecture
+                    let roomId = roomUuid
+                    let roomName = roomId
+            
+            
+                    let region = AgoraEduRegion.CN
+                    let streamLatency = AgoraEduLatencyLevel.low
+            
+                    // Is the watermark displayed in the room
+                    let hasWatermark = false
+            
+                    let options = AgoraEduLaunchConfig(userName: userName,
+                                                       userUuid: userId,
+                                                       userRole: userRole,
+                                                       roomName: roomName,
+                                                       roomUuid: roomId,
+                                                       roomType: roomType,
+                                                       appId: appId,
+                                                       token: token)
+            
+                    options.mediaOptions.latencyLevel = streamLatency
+                    options.region = region
+            
+                    self?.joinClassroom(config: options,
+                                           hasWatermark: hasWatermark)
+                    
+            }
+        }
+        
+        presentViewController(vc,
+                              animated: true)
+    }
+    
     @objc func onSignInButtonPressed(_ sender: UIButton) {
         if !center.tester.isTest {
            showLoginViewController()
@@ -121,103 +161,65 @@ private extension FcrAppUIQuickStartViewController {
     }
     
     @objc func onJoinButtonPressed(_ sender: UIButton) {
-        
-        let userId = "222222"
-        let userName = userId
-        let userRole = AgoraEduUserRole.student
-        
-        let roomType = AgoraEduRoomType.lecture
-        let roomId = "999888777"
-        let roomName = roomId
-        
-        let appId = "f488493d1886435f963dfb3d95984fd4"
-        let token = "007eJxTYEhcw7X76Mtnr5Iu98m83Np/Sm2/ir5Ljbib/dkav9fzKt0UGNJMLCxMLI1TDC0szEyMTdMszYxT0pKMUyxNLS1M0lJMak85pjcEMjJMuv7WkpmBiYERCEF8NgYjMGBlYGBQYEg1Tk5NMrWwMEw0SDRMS0lMTDEwNLI0SzE3NTWxMLNIYYfr42SwtLS0sLAwNzeHGcHEAABqFC23"
 
-        let region = AgoraEduRegion.CN
-        let streamLatency = AgoraEduLatencyLevel.low
+        let joinRoomView = contentView.roomInputView.joinRoomView
         
-        // The language and mode displayed in the room are determined by
-        // the global variables `agora_ui_language` and `agora_ui_mode`.
-        agora_ui_language = self.center.language.proj()
-        agora_ui_mode = self.center.uiMode.toAgoraType()
+        guard let roomId = joinRoomView.roomIdTextField.getText() else {
+            showToast("fcr_login_free_toast_room_id_null".localized(),
+                      type: .error)
+            return
+        }
         
-        // Is the watermark displayed in the room
-        let hasWatermark = false
+        if roomId.count != 9 {
+            showToast("fcr_login_free_tips_num_length".localized(),
+                      type: .error)
+            return
+        }
         
-        let options = AgoraEduLaunchConfig(userName: userName,
-                                           userUuid: userId,
-                                           userRole: userRole,
-                                           roomName: roomName,
-                                           roomUuid: roomId,
-                                           roomType: roomType,
-                                           appId: appId,
-                                           token: token)
+        guard let userName = joinRoomView.userNameTextField.getText() else {
+            showToast("fcr_login_free_toast_nick_name_null".localized(),
+                      type: .error)
+            return
+        }
         
-        options.mediaOptions.latencyLevel = streamLatency
-        options.region = region
+        if userName.count < 2 || userName.count > 20 {
+            showToast("fcr_home_toast_content_length".localized(),
+                      type: .error)
+            return
+        }
         
-        self.joinClassroom(config: options,
-                           hasWatermark: hasWatermark)
+        guard contentView.roomInputView.policyView.checkBox.isSelected else {
+            showToast(FcrAppUIPolicyString().toastString(),
+                      type: .error)
+            return
+        }
         
-//
-//        let joinRoomView = contentView.roomInputView.joinRoomView
-//        
-//        guard let roomId = joinRoomView.roomIdTextField.getText() else {
-//            showToast("fcr_login_free_toast_room_id_null".localized(),
-//                      type: .error)
-//            return
-//        }
-//        
-//        if roomId.count != 9 {
-//            showToast("fcr_login_free_tips_num_length".localized(),
-//                      type: .error)
-//            return
-//        }
-//        
-//        guard let userName = joinRoomView.userNameTextField.getText() else {
-//            showToast("fcr_login_free_toast_nick_name_null".localized(),
-//                      type: .error)
-//            return
-//        }
-//        
-//        if userName.count < 2 || userName.count > 20 {
-//            showToast("fcr_home_toast_content_length".localized(),
-//                      type: .error)
-//            return
-//        }
-//        
-//        guard contentView.roomInputView.policyView.checkBox.isSelected else {
-//            showToast(FcrAppUIPolicyString().toastString(),
-//                      type: .error)
-//            return
-//        }
-//        
-//        let userRole = joinRoomView.selectedUserRole
-//        
-//        AgoraLoading.loading()
-//        
-//        center.room.getRoomInfo(roomId: roomId,
-//                                isQuickStart: true) { [weak self] object in
-//            AgoraLoading.hide()
-//            
-//            let userId = FcrAppRoomUserIdCreater().quickStart(userName: userName,
-//                                                              userRole: userRole,
-//                                                              roomType: object.sceneType)
-//            
-//            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
-//                                                      userId: userId,
-//                                                      userName: userName,
-//                                                      userRole: userRole,
-//                                                      isQuickStart: true)
-//            
-//            self?.center.localStorage.writeData(userName,
-//                                                key: .nickname)
-//            
-//            self?.joinRoomPreCheck(config: config)
-//        } failure: { [weak self] error in
-//            AgoraLoading.hide()
-//            self?.showErrorToast(error)
-//        }
+        let userRole = joinRoomView.selectedUserRole
+        
+        AgoraLoading.loading()
+        
+        center.room.getRoomInfo(roomId: roomId,
+                                isQuickStart: true) { [weak self] object in
+            AgoraLoading.hide()
+            
+            let userId = FcrAppRoomUserIdCreater().quickStart(userName: userName,
+                                                              userRole: userRole,
+                                                              roomType: object.sceneType)
+            
+            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+                                                      userId: userId,
+                                                      userName: userName,
+                                                      userRole: userRole,
+                                                      isQuickStart: true)
+            
+            self?.center.localStorage.writeData(userName,
+                                                key: .nickname)
+            
+            self?.joinRoomPreCheck(config: config)
+        } failure: { [weak self] error in
+            AgoraLoading.hide()
+            self?.showErrorToast(error)
+        }
     }
     
     @objc func onCreateButtonPressed(_ sender: UIButton) {

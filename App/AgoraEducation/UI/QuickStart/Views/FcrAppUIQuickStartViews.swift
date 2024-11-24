@@ -110,7 +110,7 @@ class FcrAppUIQuickStartHeaderView: UIView,
         testTag.text = "Tester"
         
         // Sign button
-        signButton.setTitle("fcr_login_free_button_login_sign".localized(),
+        signButton.setTitle("IM分组",
                             for: .normal)
         
         signButton.setTitleColor(FcrAppUIColorGroup.fcr_white,

@@ -34,7 +34,7 @@ target 'AgoraEducation' do
   pod 'AgoraWidgets', :path => '../../apaas-extapp-ios'
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.101'
-  pod 'AgoraEduCore', 	       '2.8.101'
+  pod 'AgoraEduCore', :path => '../../AgoraEduCore/AgoraEduCore_Local.podspec'
   pod 'AgoraWidget',           '2.8.0'
 
   # post install, no signing for pods bundle, after xcode 14
