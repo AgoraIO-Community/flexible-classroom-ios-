@@ -16,7 +16,7 @@ class FcrAppUIAboutViewController: FcrAppUIViewController {
     private let isMainLandChina: Bool
     
     ///Publish-Time
-    private let versionTime = "2024.11.25"
+    private let versionTime = "2024.11.26"
     
     init(dataSource: [FcrAppUISettingItem.AboutUsItem],
          isMainLandChina: Bool) {

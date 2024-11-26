@@ -112,6 +112,7 @@ private extension FcrAppUIQuickStartViewController {
     }
     
     @objc func onImGroupButtonPressed(_ sender: UIButton) {
+        let FilePathName: String = NSTemporaryDirectory()
         let vc = FcrAppUIJoinRoomController(center: center) { [weak self] (roomUuid, userUuid) in
             self?.center.getConfigV3(role: AgoraEduUserRole.student.rawValue, roomUuid: roomUuid, userUuid: userUuid) { [weak self] appId, token in
                     let userId = userUuid
