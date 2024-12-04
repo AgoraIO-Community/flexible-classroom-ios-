@@ -88,11 +88,9 @@ end
 """
 
 PreRtcContent = """
-    pod 'AgoraRtcEngine_iOS/RtcBasic', '3.6.2'
 """
 
 RePodContent = """
-    pod 'AgoraRtcKit', :path => '../../common-scene-sdk/ReRtc/AgoraRtcKit_Binary.podspec'
 """
 
 LeaksFinderContent = """
@@ -191,7 +189,7 @@ def generatePodfile():
     elif BaseParams["podMode"] == PODMODE.Binary:
         lines.append(BinaryPodContent)
 
-    rtcHandle(lines)
+    # rtcHandle(lines)
     
     with open(podFilePath,'w') as f:
         f.writelines(lines)
@@ -211,6 +209,8 @@ def executePod():
         os.system('pod install --repo-update')
     else:
         os.system('pod install --no-repo-update')
+        
+    os.system('cat Podfile.lock')
 
 def main():
     paramsLen = len(sys.argv)
