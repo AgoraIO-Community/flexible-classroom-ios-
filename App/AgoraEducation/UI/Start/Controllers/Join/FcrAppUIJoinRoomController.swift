@@ -13,10 +13,10 @@ class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
     
     private var center: FcrAppCenter
     
-    var completion: ((FcrAppJoinRoomPreCheckConfig) -> Void)?
+    var completion: ((_ roomUuid:String, _ userUuid:String) -> Void)?
     
     init(center: FcrAppCenter,
-         completion: ((FcrAppJoinRoomPreCheckConfig) -> Void)? = nil) {
+         completion: ((_ roomUuid:String, _ userUuid:String) -> Void)? = nil) {
         self.center = center
         self.completion = completion
         super.init()
@@ -45,7 +45,9 @@ class FcrAppUIJoinRoomController: FcrAppStartUIPresentedViewController {
         
         joinView.roomInputView.roomIdTextField.setShowText(center.room.lastId)
         joinView.roomInputView.userNameTextField.text = center.localUser?.nickname
-        
+        joinView.teacherView.isHidden = true
+        joinView.roleTitleLabel.isHidden = true
+        joinView.studentView.isHidden = true
         joinView.studentView.button.addTarget(self,
                                               action: #selector(onPressedStudentButton(_:)),
                                               for: .touchUpInside)
@@ -119,36 +121,42 @@ private extension FcrAppUIJoinRoomController {
             return
         }
         
-        let userRole: FcrAppUIUserRole = (joinView.teacherView.button.isSelected ? .teacher : .student)
+      
         
-        guard let userId = center.localUser?.userId else {
-            fatalError()
-        }
+        self.dismiss(animated: true)
         
-        AgoraLoading.loading()
+        self.completion?(roomId, userName)
         
-        center.room.getRoomInfo(roomId: roomId) { [weak self] object in
-            AgoraLoading.hide()
-            
-            let newId = FcrAppRoomUserIdCreater().start(userId: userId,
-                                                        userName: userName,
-                                                        userRole: userRole,
-                                                        roomType: object.sceneType)
-            
-            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
-                                                      userId: newId,
-                                                      userName: userName,
-                                                      userRole: userRole)
-            
-            self?.dismiss(animated: true)
-            
-            self?.completion?(config)
-            
-            self?.completion = nil
-        } failure: { [weak self] error in
-            AgoraLoading.hide()
-            self?.showErrorToast(error)
-        }
+        self.completion = nil
+//        let userRole: FcrAppUIUserRole = (joinView.teacherView.button.isSelected ? .teacher : .student)
+//        guard let userId = center.localUser?.userId else {
+//            fatalError()
+//        }
+//        
+//        AgoraLoading.loading()
+//        
+//        center.room.getRoomInfo(roomId: roomId) { [weak self] object in
+//            AgoraLoading.hide()
+//            
+//            let newId = FcrAppRoomUserIdCreater().start(userId: userId,
+//                                                        userName: userName,
+//                                                        userRole: userRole,
+//                                                        roomType: object.sceneType)
+//            
+//            let config = FcrAppJoinRoomPreCheckConfig(roomId: roomId,
+//                                                      userId: newId,
+//                                                      userName: userName,
+//                                                      userRole: userRole)
+//            
+//            self?.dismiss(animated: true)
+//            
+//            self?.completion?(config)
+//            
+//            self?.completion = nil
+//        } failure: { [weak self] error in
+//            AgoraLoading.hide()
+//            self?.showErrorToast(error)
+//        }
     }
     
     @objc func onPressedTeacherButton(_ sender: UIButton) {

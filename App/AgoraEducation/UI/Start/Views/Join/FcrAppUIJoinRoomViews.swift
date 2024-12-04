@@ -136,7 +136,7 @@ class FcrAppUIJoinRoomInputView: UIView,
 
 class FcrAppUIJoinRoomView: UIView,
                             AgoraUIContentContainer {
-    private let roleTitleLabel = UILabel()
+    let roleTitleLabel = UILabel()
     
     let roomInputView = FcrAppUIJoinRoomInputView()
     
@@ -159,7 +159,6 @@ class FcrAppUIJoinRoomView: UIView,
         addSubview(roleTitleLabel)
         addSubview(studentView)
         addSubview(teacherView)
-        
         teacherView.selected(false)
         studentView.selected(true)
         

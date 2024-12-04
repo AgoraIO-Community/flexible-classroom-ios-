@@ -91,6 +91,8 @@ class FcrAppCenter: NSObject {
         armin.failureDelegate = self
         
         do {
+            localStorage.writeData(true,
+                                   key: .testMode)
             if let mode = try? localStorage.readStringEnumData(key: .uiMode,
                                                                type: FcrAppUIMode.self) {
                 self.uiMode = mode
@@ -278,6 +280,21 @@ class FcrAppCenter: NSObject {
         } failure: { [weak self] error in
             self?.isLogined = false
             self?.delegate?.onLoginExpired()
+        }
+    }
+    
+    func getConfigV3(role:Int, roomUuid:String, userUuid:String, success: TestTokenSuccessCompletion?){
+        let url = urlGroup.TestToken(role: role, roomUuid: roomUuid, userUuid: userUuid)
+        armin.request(url: url, method: .get, event: "get-config-v3") {object in
+           
+            let data = try object.dataConvert(type: [String: Any].self)
+            
+            let appId = try data.getValue(of: "appId",
+                                                type: String.self)
+            
+            let token = try data.getValue(of: "token",
+                                                 type: String.self)
+            success?(appId, token)
         }
     }
 }

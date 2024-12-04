@@ -227,4 +227,11 @@ class FcrAppURLGroup {
         let url = array.joined(separator: "/")
         return url
     }
+    
+    func TestToken(role:Int, roomUuid:String, userUuid:String) -> String {
+        let array = [host, edu, "v3",
+                     "rooms", roomUuid, "roles", role.string, "users", userUuid, "token"]
+        let url = array.joined(separator: "/")
+        return url
+    }
 }
