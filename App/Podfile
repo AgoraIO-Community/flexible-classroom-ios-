@@ -31,10 +31,10 @@ target 'AgoraEducation' do
   pod 'AgoraProctorSDK',       '1.0.1'
   pod 'AgoraProctorUI',        '1.0.0'
   
-  pod 'AgoraWidgets', :path => '../../apaas-extapp-ios'
+  pod 'AgoraWidgets', 	       '2.8.103'
   # close source libs
   pod 'AgoraUIBaseViews',      '2.8.101'
-  pod 'AgoraEduCore', :path => '../../AgoraEduCore/AgoraEduCore_Local.podspec'
+  pod 'AgoraEduCore',          '2.8.104'
   pod 'AgoraWidget',           '2.8.0'
 
   # post install, no signing for pods bundle, after xcode 14

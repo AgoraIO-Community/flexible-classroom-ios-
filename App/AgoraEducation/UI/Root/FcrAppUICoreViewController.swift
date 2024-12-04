@@ -103,8 +103,7 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                                       hasWatermark: hasWatermark)
 
         AgoraClassroomSDK.setDelegate(self)
-        let sel = NSSelectorFromString("setEnvironment:")
-        AgoraClassroomSDK.perform(sel, with: center.urlGroup.environment.intValue)
+       
         let version = AgoraClassroomSDK.version()
         // 大班分组
         let chat: AgoraWidgetConfig
