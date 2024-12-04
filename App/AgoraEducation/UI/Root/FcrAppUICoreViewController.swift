@@ -9,6 +9,7 @@
 import AgoraClassroomSDK_iOS
 import AgoraUIBaseViews
 import AgoraProctorSDK
+import AgoraWidgets
 
 class FcrAppUICoreViewController: FcrAppUIViewController {
     let center: FcrAppCenter
@@ -102,7 +103,18 @@ class FcrAppUICoreViewController: FcrAppUIViewController {
                                       hasWatermark: hasWatermark)
 
         AgoraClassroomSDK.setDelegate(self)
+        let sel = NSSelectorFromString("setEnvironment:")
+        AgoraClassroomSDK.perform(sel, with: center.urlGroup.environment.intValue)
+        let version = AgoraClassroomSDK.version()
+        // 大班分组
+        let chat: AgoraWidgetConfig
+        if(config.roomType == AgoraEduRoomType.lecture){
+            chat = AgoraWidgetConfig(with: AgoraChatEasemobWidgetGroup.self, widgetId: "easemobIM")
+        }else{
+            chat = AgoraWidgetConfig(with: AgoraChatEasemobWidget.self, widgetId: "easemobIM")
+        }
         
+        config.widgets[chat.widgetId] = chat
         AgoraClassroomSDK.launch(config) {
             AgoraLoading.hide()
         } failure: { [weak self] error in

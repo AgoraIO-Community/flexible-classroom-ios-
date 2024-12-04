@@ -84,12 +84,12 @@ extension FcrAppUIMainViewController: AgoraUIContentContainer {
 
 private extension FcrAppUIMainViewController {
     @objc func onJoinButtonPressed(_ sender: UIButton) {
-        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] config in
-            self?.joinRoomPreCheck(config: config)
-        }
-        
-        presentViewController(vc,
-                              animated: true)
+//        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] config in
+//            self?.joinRoomPreCheck(config: config)
+//        }
+//        
+//        presentViewController(vc,
+//                              animated: true)
     }
      
     @objc func onCreateButtonPressed(_ sender: UIButton) {

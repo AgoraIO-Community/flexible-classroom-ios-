@@ -7,6 +7,8 @@
 //
 
 import AgoraUIBaseViews
+import AgoraClassroomSDK_iOS
+import AgoraWidgets
 
 extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
     func initViews() {
@@ -20,7 +22,7 @@ extension FcrAppUIQuickStartViewController: AgoraUIContentContainer {
                                            for: .touchUpInside)
         
         headerView.signButton.addTarget(self,
-                                        action: #selector(onSignInButtonPressed(_ :)),
+                                        action: #selector(onImGroupButtonPressed(_ :)),
                                         for: .touchUpInside)
         
         // Join room view
@@ -109,6 +111,48 @@ private extension FcrAppUIQuickStartViewController {
                               animated: true)
     }
     
+    @objc func onImGroupButtonPressed(_ sender: UIButton) {
+        let FilePathName: String = NSTemporaryDirectory()
+        let vc = FcrAppUIJoinRoomController(center: center) { [weak self] (roomUuid, userUuid) in
+            self?.center.getConfigV3(role: AgoraEduUserRole.student.rawValue, roomUuid: roomUuid, userUuid: userUuid) { [weak self] appId, token in
+                    let userId = userUuid
+                    let userName = userId
+                    let userRole = AgoraEduUserRole.student
+            
+                    let roomType = AgoraEduRoomType.lecture
+                    let roomId = roomUuid
+                    let roomName = roomId
+            
+            
+                    let region = AgoraEduRegion.CN
+                    let streamLatency = AgoraEduLatencyLevel.low
+            
+                    // Is the watermark displayed in the room
+                    let hasWatermark = false
+            
+                    let options = AgoraEduLaunchConfig(userName: userName,
+                                                       userUuid: userId,
+                                                       userRole: userRole,
+                                                       roomName: roomName,
+                                                       roomUuid: roomId,
+                                                       roomType: roomType,
+                                                       appId: appId,
+                                                       token: token)
+            
+                    options.mediaOptions.latencyLevel = streamLatency
+                    options.region = region
+                
+                
+                    self?.joinClassroom(config: options,
+                                           hasWatermark: hasWatermark)
+                    
+            }
+        }
+        
+        presentViewController(vc,
+                              animated: true)
+    }
+    
     @objc func onSignInButtonPressed(_ sender: UIButton) {
         if !center.tester.isTest {
            showLoginViewController()
@@ -120,6 +164,7 @@ private extension FcrAppUIQuickStartViewController {
     }
     
     @objc func onJoinButtonPressed(_ sender: UIButton) {
+
         let joinRoomView = contentView.roomInputView.joinRoomView
         
         guard let roomId = joinRoomView.roomIdTextField.getText() else {
