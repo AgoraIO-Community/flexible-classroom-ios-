@@ -3,4 +3,4 @@
 cd $(dirname $0)
 echo pwd: `pwd`
 
-python ./private_method.py
+python3 ./private_method.py
