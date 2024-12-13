@@ -1032,7 +1032,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraEducation;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1096,7 +1096,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraFlexEduDis;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1216,7 +1216,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.WayangQA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1336,7 +1336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateA;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1455,7 +1455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateB;
 				PRODUCT_NAME = AgoraCloudClass;
@@ -1574,7 +1574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.104;
+				MARKETING_VERSION = 2.8.105;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.CertificateD;
 				PRODUCT_NAME = AgoraCloudClass;

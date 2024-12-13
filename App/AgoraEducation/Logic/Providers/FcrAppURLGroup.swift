@@ -198,7 +198,7 @@ class FcrAppURLGroup {
     
     func closeAccount() -> String {
         let array = [host, sso, version2,
-                     users, auth]
+                     users, logout]
         let url = array.joined(separator: "/")
         return url
     }

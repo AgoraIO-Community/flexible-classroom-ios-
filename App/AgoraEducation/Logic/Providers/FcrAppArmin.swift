@@ -13,7 +13,7 @@ protocol FcrAppArminFailureDelegate: NSObjectProtocol {
     func onRequestFailure(error: FcrAppError)
 }
 
-class FcrAppArmin: Armin {
+class FcrAppArmin: ArminClient {
     weak var failureDelegate: FcrAppArminFailureDelegate?
     
     func request(url: String,
