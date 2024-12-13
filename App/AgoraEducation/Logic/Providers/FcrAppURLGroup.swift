@@ -43,6 +43,7 @@ class FcrAppURLGroup {
     private let refresh = "refresh"
     private let refreshTokenKey = "refreshToken"
     private let preflight = "preflight"
+    private let logout = "logout"
     
     private let version1 = "v1"
     private let version2 = "v2"
