@@ -220,6 +220,8 @@ def executePod():
 
     # 改变当前工作目录到指定的路径
     os.chdir(ExtcuteDir)
+    os.system('export LANG=en_US.UTF-8')
+    
     print  ('====== pod install log ======')
     os.system('rm -rf Podfile.lock')
     if BaseParams["updateFlag"] == True:
