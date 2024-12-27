@@ -9,7 +9,7 @@
 import AgoraUIBaseViews
 import Foundation
 import WebKit
-import Armin
+import AgoraFoundation
 
 protocol FcrAppCenterDelegate: NSObjectProtocol {
     func onLanguageUpdated(_ language: FcrAppLanguage)
@@ -293,22 +293,22 @@ extension FcrAppCenter: FcrAppArminFailureDelegate {
 }
 
 extension FcrAppCenter: ArLogTube {
-    func log(info: String,
-             extra: String?) {
+    func onLog(info: String, 
+               extra: [String : Any]?) {
         logOnConsole("INFO: \(info)",
-                     extra: "EXTRA: \(extra ?? "nil")")
+                     extra: "EXTRA: \(extra?.agora_json_string() ?? "nil")")
     }
     
-    func log(warning: String,
-             extra: String?) {
+    func onLog(warning: String, 
+               extra: [String : Any]?) {
         logOnConsole("WARNING: \(warning)",
-                     extra: "EXTRA: \(extra ?? "nil")")
+                     extra: "EXTRA: \(extra?.agora_json_string() ?? "nil")")
     }
     
-    func log(error: ArError,
-             extra: String?) {
+    func onLog(error: Error, 
+               extra: [String : Any]?) {
         logOnConsole("ERROR: \(error.localizedDescription)",
-                     extra: "EXTRA: \(extra ?? "nil")")
+                     extra: "EXTRA: \(extra?.agora_json_string() ?? "nil")")
     }
     
     func logOnConsole(_ log: String,
