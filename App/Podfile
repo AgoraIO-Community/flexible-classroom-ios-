@@ -14,7 +14,7 @@ target 'AgoraEducation' do
  
   # agora libs header
   pod 'AgoraClassroomSDK_iOS', '2.8.105'
-  pod 'AgoraProctorSDK',       '1.0.1'
+  pod 'AgoraProctorSDK',       '1.0.2'
   pod 'AgoraWidgets',          '2.8.105'
   # agora libs footer
 end
