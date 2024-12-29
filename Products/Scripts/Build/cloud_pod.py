@@ -27,9 +27,9 @@ SourcePodContent = """
   pod 'AgoraEduCore/Source',            :path => '../../cloudclass-ios/AgoraEduCore_Local.podspec'
   pod 'AgoraRte/Source',                :path => '../../common-scene-sdk/AgoraRte_Local.podspec'
   
+  pod 'AgoraFoundation/Source',             :path => '../../apaas-common-libs-ios-ng/AgoraFoundation_Local.podspec'
   pod 'AgoraUIBaseViews/Source',        :path => '../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
   pod 'AgoraWidget/Source',             :path => '../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
-  
 """
 
 BinaryPodContent = """
@@ -45,7 +45,7 @@ BinaryPodContent = """
   pod 'AgoraEduCore/Binary',          :path => '../AgoraEduCore_Local.podspec'
   pod 'AgoraUIBaseViews/Binary',      :path => '../AgoraUIBaseViews_Local.podspec'
   pod 'AgoraWidget/Binary',           :path => '../AgoraWidget_Local.podspec'
-
+  pod 'AgoraFoundation/Binary',       :path => '../AgoraFoundation_Local.podspec'
 """
 
 BaseParams = {"podMode": PODMODE.Source,
