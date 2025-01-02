@@ -12,8 +12,8 @@
 # AgoraUIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/release_2.8.105/dev/AgoraClassroomSDK_iOS_2.8.105.zip"
-AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/release_2.8.105/dev/AgoraEduUI_2.8.105.zip"
+AgoraClassroomSDK_iOS_URL="${Artifactory_iOS_URL}/AgoraClassroomSDK_iOS/feature_2.8.105_im_group/dev/AgoraClassroomSDK_iOS_2.8.105.zip"
+AgoraEduUI_URL="${Artifactory_iOS_URL}/AgoraEduUI/feature_2.8.105_im_group/dev/AgoraEduUI_2.8.105.zip"
 
 AgoraProctorSDK_URL="${Artifactory_iOS_URL}/AgoraProctorSDK/release_1.0.2/dev/AgoraProctorSDK_1.0.2.zip"
 AgoraProctorUI_URL="${Artifactory_iOS_URL}/AgoraProctorUI/release_1.0.2/dev/AgoraProctorUI_1.0.2.zip"
