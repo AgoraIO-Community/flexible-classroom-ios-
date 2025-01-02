@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import Armin
+import AgoraFoundation
 
 protocol FcrAppArminFailureDelegate: NSObjectProtocol {
     func onRequestFailure(error: FcrAppError)
 }
 
-class FcrAppArmin: Armin {
+class FcrAppArmin: ArminClient {
     weak var failureDelegate: FcrAppArminFailureDelegate?
     
     func request(url: String,
@@ -27,16 +27,15 @@ class FcrAppArmin: Armin {
             printDebug("event: \(event), headers: \(headers)")
         }
         
-        let type = ArRequestType.http(method,
-                                      url: url)
-        
-        let requestTask = ArRequestTask(event: ArRequestEvent(name: event),
-                                        type: type,
-                                        timeout: .medium,
-                                        header: headers,
-                                        parameters: parameters)
-        
-        let response: ArResponse = ArResponse.json { (json) in
+        self.objc_request(url: url,
+                          headers: headers,
+                          parameters: parameters,
+                          method: method,
+                          event: event,
+                          timeout: 10,
+                          responseQueue: DispatchQueue.main,
+                          retryCount: 0,
+                          jsonSuccess: { json in
             do {
                 let responseObject = try FcrAppServerResponseObject(json: json)
                 try success?(responseObject)
@@ -44,20 +43,21 @@ class FcrAppArmin: Armin {
                 error.message = event + ", " + error.message
                 printDebug("Error: " + "\(error.message)")
                 failure?(error)
+            } catch {
+                printDebug("Unexpected error: \(error)")
+                let appError = FcrAppError(code: -1,
+                                           message: "Unexpected error: \(error)")
+                failure?(appError)
             }
-        }
-        
-        request(task: requestTask,
-                responseOnMainQueue: true,
-                success: response) { [weak self] (error) in
-            let appError = FcrAppError(code: error.code ?? -1,
+        }) { [weak self] error in
+            let appError = FcrAppError(code: error.code,
                                        message: error.localizedDescription)
             
             self?.failureDelegate?.onRequestFailure(error: appError)
             
             failure?(appError)
-                
-            return .resign
+        } cancelRetry: { error in
+            return true
         }
     }
     
