@@ -11,8 +11,9 @@ target 'AgoraEducation' do
   pod 'SwifterSwift',      '5.2.0'
   pod 'Masonry',           '1.1.0'
   pod 'SDWebImage',        '5.12.0'
-
-  pod 'Whiteboard',   :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
+  
+  pod 'AgoraRtcEngine_Special_iOS', '3.7.2.133'
+  pod 'Whiteboard',                  :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
  
   # agora libs header
   pod 'AgoraClassroomSDK_iOS', '2.8.105'
